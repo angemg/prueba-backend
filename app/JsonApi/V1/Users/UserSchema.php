@@ -33,6 +33,7 @@ class UserSchema extends Schema
             Str::make('name'),
             Str::make('email'),
             Str::make('password'),
+            Str::make('role'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];

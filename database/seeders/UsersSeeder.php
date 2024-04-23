@@ -20,19 +20,22 @@ class UsersSeeder extends Seeder
         User::create([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
-            'password' => 'qwerty'
+            'password' => 'qwerty',
+            'role' =>'Admin',
         ])->assignRole('Admin');
 
         User::create([
             'name' => 'Angelica',
             'email' => 'angelica@gmail.com',
-            'password' => 'qwerty'
+            'password' => 'qwerty',
+            'role' =>'UserJunior',
         ])->assignRole('UserJunior');
         
         User::create([
             'name' => 'Martinez',
             'email' => 'martinez@gmail.com',
-            'password' => 'qwerty'
+            'password' => 'qwerty',
+            'role' =>'UserVip',
         ])->assignRole('UserVip');
 
     }

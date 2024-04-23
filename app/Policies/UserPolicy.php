@@ -19,11 +19,9 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user) 
+    public function view(User $user): bool
     {
         //
-      $user::all();
-        return $user;
            
     }
 
@@ -33,7 +31,6 @@ class UserPolicy
     public function create(User $user): bool
     {
         //
-        return true;
     }
 
     /**

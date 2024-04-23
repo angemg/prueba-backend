@@ -20,7 +20,8 @@ class UserRequest extends ResourceRequest
             // @TODO
             'name' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'password' => ['required', 'string']
+            'password' => ['required', 'string'],
+            'role' => ['required', 'string'],
         ];
     }
 

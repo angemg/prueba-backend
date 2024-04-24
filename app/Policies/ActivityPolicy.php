@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\RoleChangeRequests;
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class RoleChangeRequestsPolicy
+class ActivityPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,9 +19,9 @@ class RoleChangeRequestsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, RoleChangeRequests $roleChangeRequests): bool
+    public function view(User $user, Activity $activity): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,13 +29,13 @@ class RoleChangeRequestsPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, RoleChangeRequests $roleChangeRequests): bool
+    public function update(User $user, Activity $activity): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class RoleChangeRequestsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, RoleChangeRequests $roleChangeRequests): bool
+    public function delete(User $user, Activity $activity): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class RoleChangeRequestsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, RoleChangeRequests $roleChangeRequests): bool
+    public function restore(User $user, Activity $activity): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class RoleChangeRequestsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, RoleChangeRequests $roleChangeRequests): bool
+    public function forceDelete(User $user, Activity $activity): bool
     {
         //
     }

@@ -37,6 +37,8 @@ class Server extends BaseServer
             // @TODO
             Users\UserSchema::class,
             RoleChangeRequests\RoleChangeRequestSchema::class,
+            Companies\CompanySchema::class,
+            Activities\ActivitySchema::class,
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Activity;
+use App\Http\Controllers\Api\V1\Company;
 use App\Http\Controllers\Api\V1\RoleChangeRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +10,7 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\ChangeRoleController;
+use LaravelJsonApi\Laravel\Routing\Relationships;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +40,18 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
         ->only('index', 'show', 'store')->actions(function($action){
             $action->post('request-change-role');
             $action->withId()->post('answer-request');
+        });
+        $server->resource('companies', Company::class)
+        ->only('index', 'show', 'store')->actions(function($action){
+            $action->post('register-company');
+        })->relationships(function(Relationships $relationships){
+            $relationships->hasMany('activities');
+        });
+
+        $server->resource('activities', Activity::class)
+        ->only('index', 'show', 'store')->actions(function($action){
+            $action->post('register-activity');
+        })->relationships(function(Relationships $relationships){
+            $relationships->hasMany('companies');
         });
     });

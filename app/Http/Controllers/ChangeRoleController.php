@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\RoleNotification;
+use App\Enums\RoleUserEnum;
 
 
 class ChangeRoleController extends Controller
@@ -15,7 +16,7 @@ class ChangeRoleController extends Controller
         $dataUser = $request->user();
         $dataAdmin = User::where('role','Admin')->first();
        
-        if ($dataUser->role == 'UserJunior')
+        if ($dataUser->role == RoleUserEnum::USERJUNIOR->value)
         {
             $messages["solicitud"] = "Estoy solicitando cambio de Rol";
             $messages["solicitante"] = $dataUser->name;
@@ -24,17 +25,6 @@ class ChangeRoleController extends Controller
         }else{
             return response()->json(["message" => "El usuario logeado no tiene Rol UserJunior"]);
         }
-    }
-
-    public function ChangeRole(Request $request, User $user)
-    {
-      
-        if ($user->role == 'UserJunior')
-        {
-            
-            $user->role = 'UserVip';
-        }
-        dd($user->role);
     }
 
 }

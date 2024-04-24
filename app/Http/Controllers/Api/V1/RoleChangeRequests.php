@@ -67,10 +67,5 @@ class RoleChangeRequests extends Controller
                 'message' => 'Se denegó la solicitud',
             ]);
         }
-        
-        
     }
-
-
-
 }

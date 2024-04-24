@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('activity_company', function (Blueprint $table) {
             $table->id();
-            $table->string('dni', 100);
-            $table->string('cif', 100);
-            $table->string('nie', 100);
-            $table->string('nif', 100);
-            $table->string('passport', 100);
-            $table->string('estado',10);
             $table->timestamps();
+            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('activity_id')->references('id')->on('activities');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('activity_company');
     }
 };

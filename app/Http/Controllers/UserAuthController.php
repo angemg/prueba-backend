@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use App\Notifications\RoleNotification;
 
 class UserAuthController extends Controller
 {
@@ -16,14 +16,14 @@ class UserAuthController extends Controller
             'name'      =>'required|string',
             'email'     =>'required|string|email|unique:users',
             'password'  =>'required|min:6',
-            'role'      =>'required|string',
         ]);
 
+        // Creo nuevos usuarios
         User::create([
             'name'       => $registerUser['name'],
             'email'      => $registerUser['email'],
             'password'   => Hash::make($registerUser['password']),
-            'role'       => $registerUser['role'],
+            'role'       => 'UserJunior', //Asigno el Rol por defecto a los nuevos usuarios
         ]);
 
         return response()->json([
@@ -48,7 +48,15 @@ class UserAuthController extends Controller
 
         $token = $user->createToken($user->name.'-AuthToken')->plainTextToken;
 
-        return response()->json(['access_token' => $token]);
+        if (isset($token) && $user->role == 'UserJunior')
+        {
+            $messages["solicitud"] = "Estoy solicitando cambio de Rol";
+            $messages["solicitante"] = $user->name;
+            $user->notify(new RoleNotification($messages));
+        }
+        return response()->json(['access_token' => $token,
+                                'message' => "Login Successfully"]);
+
     }
 
     public function logout(){

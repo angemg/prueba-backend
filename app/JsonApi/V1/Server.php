@@ -2,9 +2,7 @@
 
 namespace App\JsonApi\V1;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
 class Server extends BaseServer
@@ -38,6 +36,7 @@ class Server extends BaseServer
         return [
             // @TODO
             Users\UserSchema::class,
+            RoleChangeRequests\RoleChangeRequestSchema::class,
         ];
     }
 }

@@ -21,7 +21,7 @@ class UserRequest extends ResourceRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'string'],
             'password' => ['required', 'string'],
-            'role' => ['required', 'string'],
+            'role' => ['string'],
         ];
     }
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\RoleUserEnum;
 use App\Http\Controllers\Controller;
+use App\JsonApi\V1\Users\UserRequest;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
-use Illuminate\Http\Request;
+use App\Models\User;
 
-class Activity extends Controller
+class Users extends Controller
 {
 
     use Actions\FetchMany;
@@ -21,10 +23,11 @@ class Activity extends Controller
     use Actions\DetachRelationship;
 
 
-    public function registerActivity(Request $request)
+    public function saved(User $user, UserRequest $request): void
     {
-
-        dd($request);
+        $user->role = RoleUserEnum::USERJUNIOR->value;
+        $user->save();
 
     }
+
 }

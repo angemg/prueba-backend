@@ -17,7 +17,6 @@ class CompanyRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
             'phone'         => ['required', 'string'],
             'document_type' => ['required', 'string'],
             'estado'        => ['required', 'string'],

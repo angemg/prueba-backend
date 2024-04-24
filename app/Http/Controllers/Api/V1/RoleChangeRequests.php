@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\RoleUserEnum;
 use App\Http\Controllers\Controller;
 use App\Models\RoleChangeRequests as ModelsRoleChangeRequests;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
@@ -51,7 +52,7 @@ class RoleChangeRequests extends Controller
         $dataAdmin = User::where('role','Admin')->first();
 
         if ($status == 'approved'){
-            $user->role = 'UserVip';
+            $user->role = RoleUserEnum::USERVIP->value;;
             $user->save();
             $messages["solicitud"] = "Se aprobó la solicitud";
             $messages["solicitante"] = $status;

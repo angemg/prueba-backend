@@ -4,7 +4,7 @@ namespace App\JsonApi\V1;
 
 use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
-
+use App\Models\Company;
 class Server extends BaseServer
 {
 
@@ -22,8 +22,11 @@ class Server extends BaseServer
      */
     public function serving(): void
     {
-        // no-op
         Auth::shouldUse('sanctum');
+
+        Company::creating(static function (Company $company): void {
+            $company->user()->associate(Auth::user());
+        });
     }
 
     /**
@@ -34,7 +37,6 @@ class Server extends BaseServer
     protected function allSchemas(): array
     {
         return [
-            // @TODO
             Users\UserSchema::class,
             RoleChangeRequests\RoleChangeRequestSchema::class,
             Companies\CompanySchema::class,

@@ -37,7 +37,7 @@ class ActivityPolicy
      */
     public function update(User $user, Activity $activity): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ActivityPolicy
      */
     public function delete(User $user, Activity $activity): bool
     {
-        //
+        return $this->update($user, $activity);
     }
 
     /**

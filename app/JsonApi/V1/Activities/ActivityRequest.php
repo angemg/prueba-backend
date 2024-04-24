@@ -17,7 +17,6 @@ class ActivityRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
             'name'         => ['required', 'string'],
         ];
     }

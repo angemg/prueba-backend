@@ -50,7 +50,7 @@ class CompanyPolicy
      */
     public function delete(User $user, Company $company): bool
     {
-        //
+        return $this->update($user, $company);
     }
 
     /**

@@ -36,7 +36,6 @@ class RoleChangeRequestSchema extends Schema
             DateTime::make('updatedAt')->sortable()->readOnly(),
             BelongsTo::make('user')
         ];
-
     }
 
     /**

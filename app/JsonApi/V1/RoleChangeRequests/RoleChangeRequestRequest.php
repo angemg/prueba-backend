@@ -17,7 +17,6 @@ class RoleChangeRequestRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
             'status' => ['required', 'string']
         ];
     }

@@ -20,8 +20,7 @@ class UserPolicy
      */
     public function view(User $user): bool
     {
-        //
-           
+        return true;      
     }
 
     /**
@@ -29,7 +28,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**

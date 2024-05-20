@@ -2,12 +2,15 @@
 
 namespace App\JsonApi\V1\Users;
 
+use App\JsonApi\Filters\UserFilter;
 use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
+use LaravelJsonApi\Eloquent\Filters\WhereIn;
+use LaravelJsonApi\Eloquent\Filters\Has;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
@@ -47,7 +50,7 @@ class UserSchema extends Schema
     public function filters(): array
     {
         return [
-            WhereIdIn::make($this),
+            UserFilter::make('name',['name'])
         ];
     }
 
